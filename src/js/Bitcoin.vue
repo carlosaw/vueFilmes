@@ -4,7 +4,11 @@
 		
 		Preço atual do Bitcoin:
 
-        <div>US$: {{ bitcoin_price }}</div>
+		<div v-if="loading">Carregando...</div>
+		<div v-else>
+			<div v-if="error">Desculpe, não podemos pegar a informação no momento. Tente novamente mais tarde</div>
+			<div v-else>US$: {{ bitcoin_price }}</div>
+		</div>
 	</div>
 </template>
 
@@ -14,7 +18,9 @@ import axios from 'axios';
 export default {
 	data() {
 		return {
-            bitcoin_price:0
+            bitcoin_price:0,
+			error:false,
+			loading:true
 		}
 	},
 	mounted() {
@@ -24,7 +30,13 @@ export default {
 
                 this.bitcoin_price = r.data.bpi.USD.rate_float;
 
-            });
+            })
+			.catch(error => {
+				this.error = true;
+			})
+			.finally(()=>{
+				this.loading = false;
+			});
 	}
 }
 </script>

@@ -1,10 +1,12 @@
 <template>
 		
 	<div class="container">
-					
-		<div v-if="error">Desculpe, não podemos pegar as informações no momento. Tente novamente mais tarde!</div>
-		<div v-else class="cartaz"><h2>Filmes em Cartaz</h2></div>
-						
+
+		<div v-if="loading">Carregando...</div>
+		<div v-else>			
+			<div v-if="error">Desculpe, não podemos pegar as informações no momento. Tente novamente mais tarde!</div>
+			<div v-else class="cartaz"><h2>Filmes em Cartaz</h2></div>
+		</div>				
 			<div class="films">
 				<div v-for="film in films" class="film_item">
 					<img v-bind:src="film.avatar" alt="" /><br/>
@@ -35,6 +37,9 @@ export default {
 		.catch(error => {
 			this.error = true;
 		})
+		.finally(()=>{
+			this.loading = false;
+		});
   }
 }
 </script>
