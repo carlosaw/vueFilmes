@@ -28,6 +28,7 @@ export default {
 	h3 {
 		background-color: #ff0000;
 		color: #fff;
+		padding: 10px;
 	}
 	body {
 		font-family: arial;
