@@ -2,5 +2,10 @@
 # -- Nome do arquivo
 # -- Versão do projeto
 
-# npm install
+# Intalar dependencias
+## npm install
+
+# Rodar o projeto
+## localhost/vueFilmes (xampp php7.4/htdocs)
+
 # gulp - para instalar a pasta 'public'
